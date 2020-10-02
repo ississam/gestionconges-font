@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TypeConge extends Model
+class Typeconge extends Model
 {
+    protected $guarded = [];
     public function conges()
     {
-        return $this->hasMany('App\Conges');
+        return $this->hasMany('App\Conge');
     }
 }

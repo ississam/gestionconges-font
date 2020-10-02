@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Service;
 class ServicesController extends Controller
 {
     /**
@@ -13,7 +13,10 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        //
+        // Return response()->json("ok here");
+
+        $services= Service::all(); //ici variable $contact recoit data  //sans oublier de specifier use App\Contact, ou utiliser fillable
+        Return response()->json($services,200);
     }
 
     /**
@@ -34,7 +37,12 @@ class ServicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+            $services= Services ::create([
+                // 'id_service' => $request->id_service,
+                'service' => $request->service
+                ]) ;
+                Return response()->json($services) ;
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Typeconge;
 class TypecongeController extends Controller
 {
     /**
@@ -13,7 +13,9 @@ class TypecongeController extends Controller
      */
     public function index()
     {
-        //
+        // Return response()->json("chiane caratere",200);
+        $typecon= Typeconge::all();
+        Return response()->json($typecon,200);
     }
 
     /**
@@ -34,7 +36,10 @@ class TypecongeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $typeconge= TypeConge ::create([
+            'typeconge' => $request->typeconge,
+            ]) ;
+            Return response()->json($typeconge) ;
     }
 
     /**

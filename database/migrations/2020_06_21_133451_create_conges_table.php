@@ -14,19 +14,18 @@ class CreateCongesTable extends Migration
     public function up()
     {
         Schema::create('conges', function (Blueprint $table) {
-            $table->bigIncrements('id_conge');//->unique();
-            $table->unsignedBigInteger('id_typeconge');//->unsigned();//->unique();   //declarer le champs
-            $table->foreign('id_typeconge')->references('id_typeconge')->on('typeconge');
-            $table->unsignedBigInteger('matricule');//->unsigned();//->unique();   //declarer le champs
-            $table->foreign('matricule')->references('matricule')->on('employes');
+            $table->bigIncrements('id');//->unique();
+            // $table->Integer('id_typeconge');
+            $table->unsignedBigInteger('typeconge_id');//->unsigned();//->unique();   //declarer le champs
+            $table->foreign('typeconge_id')->references('id')->on('typeconges')->onDelete('cascade');
+            ;
+            $table->unsignedBigInteger('employe_id');//->unsigned();//->unique();   //declarer le champs
+            $table->foreign('employe_id')->references('id')->on('employes')->onDelete('cascade');
             $table->date('date_demande');
             $table->date('date_depart');
             $table->date('date_retour');
             $table->integer('nombredejours');
 
-
-            // posix_cterm
-            // idtype conges + matricule employe foreignkey
         });
     }
 

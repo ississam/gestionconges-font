@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypecongeTable extends Migration
+class AddEtatToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateTypecongeTable extends Migration
      */
     public function up()
     {
-        Schema::create('typeconge', function (Blueprint $table) {
-            $table->bigIncrements('id_typeconge')->unique();
-            $table->string('typeconge', 170);
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('etat')->default(false);
         });
     }
 
@@ -27,6 +25,8 @@ class CreateTypecongeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typeconge');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 }

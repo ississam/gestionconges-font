@@ -14,23 +14,20 @@ class CreateEmployesTable extends Migration
     public function up()
     {
         Schema::create('employes', function (Blueprint $table) {
-            $table->bigIncrements('matricule');//->unique();
-            $table->unsignedBigInteger('id_service');//->unsigned();//->unique();   //declarer le champs
-            $table->foreign('id_service')->references('id_service')->on('services');//->onDelete('cascade');
-            $table->string('nom', 200);
+            $table->bigIncrements('id');//->unique();
+            $table->unsignedBigInteger('service_id');//->unsigned();//->unique();   //declarer le champs
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('nom', 200)->nullable();
             $table->string('prenom', 200);
             $table->string('adresse', 300);
             $table->integer('tel');
             $table->string('email');
             $table->date('date_naissance');
             $table->date('daterecrutement');
-
-
-            // $table->unsignedBigInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('users');
-            // posix_cterm
-            // idservice foreignkey
-
+            $table->string('photo');
+            $table->string('poste');
             $table->timestamps();
         });
     }
@@ -42,6 +39,6 @@ class CreateEmployesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_employes');
+        Schema::dropIfExists('employes');
     }
 }
